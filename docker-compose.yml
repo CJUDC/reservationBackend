@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=ROOT
+      - POSTGRES_PASSWORD=ROOT
+      - POSTGRES_DB=test
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "ccastillom1@unicartagena.edu.co"
+      PGADMIN_DEFAULT_PASSWORD : "admin"
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
